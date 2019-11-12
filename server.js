@@ -1,21 +1,22 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
+const requireDir = require('require-dir');
 
 
 // iniciando o app
 const app = express();
+app.use(express.json());
+app.use(cors());
 
 // iniciando banco de dados
-mongoose.connect('mongodb://localhost:27017/sorteacher-api',
+mongoose.connect("mongodb://localhost:27017/sorteacher",
 { useNewUrlParser: true, 
   useUnifiedTopology: true
 });
-require('./src/models/Task');
+requireDir("./src/models/");
 
+// Rotas
+app.use('/api', require('./src/routes'));
 
-// criando rota
-app.get('/', (req, res) => {
-  res.send('Bem vindo ao sorteacher');
-});
-
-app.listen(3002);
+app.listen(3001);

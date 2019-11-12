@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const TaskSchema = new mongoose.Schema({
   title: {
@@ -21,5 +22,7 @@ const TaskSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+TaskSchema.plugin(mongoosePaginate);
 
 mongoose.model('Task', TaskSchema);
