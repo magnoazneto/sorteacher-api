@@ -14,6 +14,9 @@ const TaskSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  presentationTime: {
+    type: Number,
+  },
   studients: {
     type: [String],
   },

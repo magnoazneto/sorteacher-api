@@ -7,6 +7,7 @@ module.exports = {
     const { page = 1 } = req.query;
     const tasks = await Task.paginate({}, {page, limit: 5});
 
+
     return res.json(tasks);
   },
 
