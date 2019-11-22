@@ -16,11 +16,15 @@ module.exports = {
   },
 
   async update(req, res){
-    //const id = await Studients.find().id;
-    //const studients = await Studients.findByIdAndUpdate(id, req.body, { new: true });
     await Studients.remove();
     const studients = await Studients.create(req.body);
 
     return res.json(studients);
+  },
+
+  async destroy(req, res){
+    await Studients.remove();
+
+    return res.send();
   }
 };
