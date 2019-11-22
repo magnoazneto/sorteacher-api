@@ -3,6 +3,7 @@ const routes = express.Router();
 
 const TaskController = require('./controllers/TaskController');
 const StudientsController = require('./controllers/StudientsController');
+const GroupController = require('./controllers/GroupController');
 
 // tasks routes
 routes.get("/tasks", TaskController.index);
@@ -16,6 +17,13 @@ routes.get("/studients", StudientsController.index);
 routes.post("/studients", StudientsController.store);
 routes.put("/studients", StudientsController.update);
 routes.delete("/studients", StudientsController.destroy);
+
+// group routes
+routes.get("/groups", GroupController.index);
+routes.get("/groups/:id", GroupController.show);
+routes.post("/groups", GroupController.store);
+routes.put("/groups/:id", GroupController.update);
+routes.delete("/groups/:id", GroupController.destroy);
 
 
 module.exports = routes;
