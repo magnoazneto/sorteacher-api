@@ -21,9 +21,17 @@ module.exports = {
     return res.json(studients);
   },
 
+  async storeFromList(req, res){
+    for (const studient of req.body) {
+      await Studients.create(studient);
+    }
+    return res.json(JSON.stringify(res.body));
+  },
+
   async update(req, res){
-    await Studients.remove();
-    const studients = await Studients.create(req.body);
+    // await Studients.remove();
+    // const studients = await Studients.create(req.body);
+    const studients = await Studients.findByIdAndUpdate(req.params.id, req.body, {new:true});
     return res.json(studients);
   },
 

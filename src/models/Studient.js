@@ -7,7 +7,8 @@ const StudientsSchema = new mongoose.Schema({
     required: true
   },
   group:{
-    type: Number
+    type: Number,
+    default: null
   }
 });
 
