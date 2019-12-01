@@ -17,15 +17,17 @@ module.exports = {
   },
 
   async store(req, res){
+    const {studientsList} = req.body;
+    
+
+    if (studientsList){
+      for (const studient of studientsList) {
+        await Studients.create({name:studient});
+      }
+      return res.json(JSON.stringify(studientsList));
+    }    
     const studients = await Studients.create(req.body);    
     return res.json(studients);
-  },
-
-  async storeFromList(req, res){
-    for (const studient of req.body) {
-      await Studients.create(studient);
-    }
-    return res.json(JSON.stringify(res.body));
   },
 
   async update(req, res){
