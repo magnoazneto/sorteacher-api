@@ -14,6 +14,7 @@ routes.delete("/tasks/:id", TaskController.destroy);
 
 // studients routes
 routes.get("/studients", StudientsController.index);
+routes.get("/studients/:id", StudientsController.show);
 routes.post("/studients", StudientsController.store);
 routes.put("/studients", StudientsController.update);
 routes.delete("/studients/:id", StudientsController.destroy);
@@ -24,6 +25,5 @@ routes.get("/groups/:id", GroupController.show);
 routes.post("/groups", GroupController.store);
 routes.put("/groups/:id", GroupController.update);
 routes.delete("/groups/:id", GroupController.destroy);
-
 
 module.exports = routes;
