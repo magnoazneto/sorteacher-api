@@ -15,6 +15,7 @@ routes.delete("/tasks/:id", TaskController.destroy);
 // studients routes
 routes.get("/studients", StudientsController.index);
 routes.get("/studients/:id", StudientsController.show);
+routes.get("/studients/list", StudientsController.showList);
 routes.post("/studients", StudientsController.store);
 routes.put("/studients/:id", StudientsController.update);
 routes.delete("/studients/:id", StudientsController.destroy);

@@ -16,9 +16,20 @@ module.exports = {
     return res.json(studient);
   },
 
+  async showList(req, res){
+    const studients = await Studients.find();
+    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!");
+    console.log(studients);
+    return;
+    var studientsList = [];
+    for(let item of studients) {
+      studientsList.push(item.name);
+    }
+    return res.json(JSON.stringify(studientsList));
+  }
+
   async store(req, res){
-    const {studientsList} = req.body;
-    
+    const {studientsList} = req.body; //Verificar    
 
     if (studientsList){
       for (const studient of studientsList) {
@@ -30,9 +41,7 @@ module.exports = {
     return res.json(studients);
   },
 
-  async update(req, res){
-    // await Studients.remove();
-    // const studients = await Studients.create(req.body);
+  async update(req, res){    
     const studients = await Studients.findByIdAndUpdate(req.params.id, req.body, {new:true});
     return res.json(studients);
   },
