@@ -3,30 +3,29 @@ const mongoose = require('mongoose');
 const Studients = mongoose.model('Studients');
 
 module.exports = {
+  
   async index(req, res){
     const studients = await Studients.find();
-    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!");
+    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!");       
     return res.json(studients);
   },
 
-  async show(req, res){
+  async show(req, res){    
     const studient = await Studients.findById(req.params.id, (err, doc) =>{
       if (err) return res.status(404).send("Not found.");
     });
     return res.json(studient);
   },
 
-  async showList(req, res){
+  async showList(req, res){   
     const studients = await Studients.find();
-    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!");
-    console.log(studients);
-    return;
+    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!"); 
     var studientsList = [];
     for(let item of studients) {
       studientsList.push(item.name);
     }
-    return res.json(JSON.stringify(studientsList));
-  }
+    return res.json({studientsList});
+  },
 
   async store(req, res){
     const {studientsList} = req.body; //Verificar    
