@@ -10,8 +10,9 @@ module.exports = {
   },
 
   async show(req, res){
-    const studient = await Studients.findById(req.params.id);
-    if (!studient) return res.status(404).send("Não encontrado.")
+    const studient = await Studients.findById(req.params.id, (err, doc) =>{
+      if (err) return res.status(404).send("Not found.");
+    });
     return res.json(studient);
   },
 
