@@ -3,28 +3,51 @@ const mongoose = require('mongoose');
 const Studients = mongoose.model('Studients');
 
 module.exports = {
+  
   async index(req, res){
     const studients = await Studients.find();
-
+    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!");       
     return res.json(studients);
+  },
+
+  async show(req, res){    
+    const studient = await Studients.findById(req.params.id, (err, doc) =>{
+      if (err) return res.status(404).send("Not found.");
+    });
+    return res.json(studient);
+  },
+
+  async showList(req, res){   
+    const studients = await Studients.find();
+    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!"); 
+    var studientsList = [];
+    for(let item of studients) {
+      studientsList.push(item.name);
+    }
+    return res.json({studientsList});
   },
 
   async store(req, res){
-    const studients = await Studients.create(req.body);
+    const {studientsList} = req.body; //Verificar    
 
+    if (studientsList){
+      for (const studient of studientsList) {
+        await Studients.create({name:studient});
+      }
+      return res.json(JSON.stringify(studientsList));
+    }    
+    const studients = await Studients.create(req.body);    
     return res.json(studients);
   },
 
-  async update(req, res){
-    await Studients.remove();
-    const studients = await Studients.create(req.body);
-
+  async update(req, res){    
+    const studients = await Studients.findByIdAndUpdate(req.params.id, req.body, {new:true});
     return res.json(studients);
   },
 
   async destroy(req, res){
-    await Studients.remove();
-
+    await Studients.findByIdAndRemove(req.params.id);
     return res.send();
   }
 };
+
