@@ -26,6 +26,13 @@ module.exports = {
     }
     return res.json({studientsList});
   },
+  
+  async randomStudient(req, res){
+    const studients = await Studients.find();
+    if (studients.length === 0) return res.status(206).send("Alunos não cadastrados!");
+    let randomIndex = Math.floor(Math.random() * ((studients.length-1) + 1));    
+    return res.json(studients[randomIndex]);
+  },
 
   async store(req, res){
     const {studientsList} = req.body; //Verificar    
@@ -48,6 +55,10 @@ module.exports = {
   async destroy(req, res){
     await Studients.findByIdAndRemove(req.params.id);
     return res.send();
+  },
+  
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 };
 
