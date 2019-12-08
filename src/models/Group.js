@@ -3,10 +3,10 @@ const mongoosePaginate = require('mongoose-paginate');
 
 const GroupSchema = new mongoose.Schema({
   components: {
-    type: [String],   
+    type: [Object],   
   },
-  groupNumber: {
-    type: Number,
+  groupName: {
+    type: String,
     required: true,
   },
   relatedTask: {
