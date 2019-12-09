@@ -6,8 +6,8 @@ const StudientsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  group:{
-    type: String,
+  historic:{
+    type: [Object],
     default: null
   }
 });
