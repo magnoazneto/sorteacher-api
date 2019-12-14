@@ -4,6 +4,8 @@ const routes = express.Router();
 const TaskController = require('./controllers/TaskController');
 const StudientsController = require('./controllers/StudientsController');
 const GroupController = require('./controllers/GroupController');
+const EventController = require('./controllers/EventController');
+
 
 // tasks routes
 routes.get("/tasks", TaskController.index);
@@ -27,5 +29,13 @@ routes.get("/groups/:id", GroupController.show);
 routes.post("/groups", GroupController.store);
 routes.put("/groups/:id", GroupController.update);
 routes.delete("/groups/:id", GroupController.destroy);
+
+//events routes
+routes.get("/events", EventController.index);
+routes.get("/event/:id", EventController.show);
+routes.post("/event", EventController.store);
+routes.put("/event/:id", EventController.update);
+routes.delete("/event/:id", EventController.destroy);
+
 
 module.exports = routes;

@@ -10,11 +10,11 @@ const GroupSchema = new mongoose.Schema({
     required: true,
   },
   relatedTask: {
-    type: String,
+    type: Object,
   },
-  relatedTaskID: {
-    type: String,
-  },
+  relatedEvent: {
+    type: Object,
+  }
 });
 
 GroupSchema.plugin(mongoosePaginate);
