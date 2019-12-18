@@ -33,6 +33,7 @@ routes.delete("/groups/:id", GroupController.destroy);
 //events routes
 routes.get("/events", EventController.index);
 routes.get("/event/:id", EventController.show);
+routes.get("/event/groups/:amount", EventController.getGroups);
 routes.post("/event", EventController.store);
 routes.put("/event/:id", EventController.update);
 routes.delete("/event/:id", EventController.destroy);

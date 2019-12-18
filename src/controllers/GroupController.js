@@ -4,10 +4,8 @@ const Group = mongoose.model('Group');
 
 module.exports = {
   async index(req, res){
-    const { page = 1 } = req.query;
-    const groups = await Group.paginate({}, {page, limit: 5});
-
-
+    const groups = await Group.find();
+    if (groups.length === 0) return res.status(206).send("Grupos não cadastrados!");       
     return res.json(groups);
   },
 

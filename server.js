@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const requireDir = require('require-dir');
 const bodyParser = require('body-parser');
 
-
 // iniciando o app
 const app = express();
 app.use(express.json({limit:'50mb'}));
